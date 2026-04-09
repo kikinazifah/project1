@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kategori;;
+// use App\Models\Kategori;
 
 use App\Models\Artikel;
 use Illuminate\Http\Request;
 
-class ArtikelController extends Controller
+class ArtikelController2 extends Controller
 {
     public function index(Request $request)
     {

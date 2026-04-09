@@ -3,12 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController2;
 use App\Http\Controllers\MenuController;
-use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\ArtikelController2;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthCustomController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\MenuController as AdminMenuController;
-use App\Http\Controllers\Admin\ArtikelController as AdminArtikelController;
+use App\Http\Controllers\Admin\ArtikelController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\KategoriController as AdminKategoriController;
 use App\Http\Controllers\GoogleController;
@@ -40,8 +40,8 @@ Route::prefix('test')->group(function () {
 });
 Route::get('/menu', [MenuController::class, 'showUser'])->name('menu');
 Route::get('/menu/{id}', [MenuController::class, 'showDetail'])->name('menu.show');
-Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel.index');
-Route::get('/artikel/{slug}', [ArtikelController::class, 'show'])->name('artikel.show');
+Route::get('/artikel', [ArtikelController2::class, 'index'])->name('artikel.index');
+Route::get('/artikel/{slug}', [ArtikelController2::class, 'show'])->name('artikel.show');
 Route::match(['get', 'post'], '/kalkulator', [HomeController2::class, 'kalkulator'])->name('kalkulator');
 
 
@@ -50,7 +50,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
 
     Route::resource('menu', AdminMenuController::class);
-    Route::resource('artikel', AdminArtikelController::class);
+    Route::resource('artikel', ArtikelController::class);
     Route::resource('users', AdminUserController::class);
     Route::resource('kategori', AdminKategoriController::class);
     Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');
