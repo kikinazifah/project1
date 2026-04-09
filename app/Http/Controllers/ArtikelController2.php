@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 // use App\Models\Kategori;
 
-use App\Models\Artikel;
+use App\Models\Artikel2;
 use Illuminate\Http\Request;
 
 class ArtikelController2 extends Controller
@@ -17,7 +17,7 @@ class ArtikelController2 extends Controller
         $selectedKategori = trim($request->query('kategori', ''));
         $q = trim($request->query('q', ''));
 
-        $query = Artikel::query();
+        $query = Artikel2::query();
 
         if ($selectedKategori !== '') {
             $query->where('kategori', 'LIKE', '%' . $selectedKategori . '%');
@@ -33,13 +33,13 @@ class ArtikelController2 extends Controller
         if ($selectedKategori !== '') {
             $featured = null;
         } else {
-            $featured = Artikel::where('is_featured', true)->latest()->first()
-                ?? Artikel::latest()->first();
+            $featured = Artikel2::where('is_featured', true)->latest()->first()
+                ?? Artikel2::latest()->first();
         }
 
         $artikels = $query->latest()->get();
 
-        $kategoriList = Artikel::select('kategori')
+        $kategoriList = Artikel2::select('kategori')
             ->whereNotNull('kategori')
             ->distinct()
             ->pluck('kategori');
@@ -58,11 +58,11 @@ class ArtikelController2 extends Controller
     public function show($slug)
     {
         $title = "Detail Artikel";
-        $artikel = Artikel::where('slug', $slug)->firstOrFail();
+        $artikel = Artikel2::where('slug', $slug)->firstOrFail();
 
         $artikel->increment('dibaca');
 
-        $artikels = Artikel::latest()->take(4)->get();
+        $artikels = Artikel2::latest()->take(4)->get();
 
         return view('pages.artikel-detail', compact('artikel', 'artikels', 'title'));
     }
