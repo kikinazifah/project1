@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artikel;
-use App\Models\Menu;
+use App\Models\Menu2;
 use Illuminate\Http\Request;
 
 class HomeController2 extends Controller
@@ -14,7 +14,7 @@ class HomeController2 extends Controller
         $slug = "home";
         $konten = "Selamat Datang di FitLife!";
 
-        $featuredMenus = Menu::latest()->take(6)->get();
+        $featuredMenus = Menu2::latest()->take(6)->get();
         $latestArticles = Artikel::latest()->take(4)->get();
         $heroHighlight = $latestArticles->first();
 
