@@ -6,7 +6,7 @@ use App\Models\Artikel;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class HomeController2 extends Controller
 {
     public function index()
     {
