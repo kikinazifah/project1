@@ -78,6 +78,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
+
   # ─── JOB 3: DEPLOY KE VPS ────────────────────────────────
   deploy:
     name: Deploy ke VPS
@@ -107,16 +108,16 @@ jobs:
             docker pull ghcr.io/${{ github.repository }}:latest
 
             # Update container tanpa downtime besar
-            docker compose up -d --remove-orphans
+            docker-compose up -d --remove-orphans
 
             # Tunggu container siap
             echo "⏳ Menunggu container ready..."
 
-            until docker compose exec -T db mysqladmin ping -h "localhost" --silent; do
+            until docker-compose exec -T db mysqladmin ping -h "localhost" --silent; do
                 sleep 2
             done
 
             # Jalankan migrasi database
-            docker compose exec -T app php artisan migrate --force --no-interaction
+            docker-compose exec -T app php artisan migrate --force --no-interaction
 
             echo "✅ Deployment selesai!"
