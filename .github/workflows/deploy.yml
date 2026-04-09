@@ -34,10 +34,6 @@ jobs:
       - name: Generate app key
         run: php artisan key:generate
 
-      # ✅ TAMBAHAN (FIX ERROR DATABASE)
-      - name: Run migrations
-        run: php artisan migrate
-
       - name: Run PHPUnit tests
         run: php artisan test
 
@@ -117,7 +113,7 @@ jobs:
 
             # Tunggu container siap
             echo "⏳ Menunggu container ready..."
-            
+
             until docker compose exec -T db mysqladmin ping -h "localhost" --silent; do
                 sleep 2
             done
