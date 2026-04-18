@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Menu;
+use App\Models\Menu2;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class MenuController extends Controller
+class MenuController2 extends Controller
 {
     public function index(Request $request)
     {
         $search = $request->search;
 
-        $menus = Menu::when($search, function ($query) use ($search) {
+        $menus = Menu2::when($search, function ($query) use ($search) {
             $query->where('nama_menu', 'LIKE', "%{$search}%");
         })->latest()->get();
 
@@ -42,7 +42,7 @@ class MenuController extends Controller
 
         // dd($data);
 
-        Menu::create($data);
+        Menu2::create($data);
 
         return redirect()->route('admin.menu.index')
             ->with('success', 'Menu berhasil ditambahkan!');
@@ -50,13 +50,13 @@ class MenuController extends Controller
 
     public function edit($id)
     {
-        $menu = Menu::findOrFail($id);
+        $menu = Menu2::findOrFail($id);
         return view('admin.menu.edit', compact('menu'));
     }
 
     public function update(Request $request, $id)
     {
-        $menu = Menu::findOrFail($id);
+        $menu = Menu2::findOrFail($id);
 
         $data = $request->validate([
             'nama_menu' => 'required|string|max:255',
@@ -83,7 +83,7 @@ class MenuController extends Controller
 
     public function destroy($id)
     {
-        $menu = Menu::findOrFail($id);
+        $menu = Menu2::findOrFail($id);
 
 
         if ($menu->gambar && Storage::disk('public')->exists($menu->gambar)) {

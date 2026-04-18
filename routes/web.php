@@ -7,7 +7,7 @@ use App\Http\Controllers\ArtikelController2;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthCustomController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\MenuController as AdminMenuController;
+use App\Http\Controllers\Admin\MenuController2 as AdminMenuController2;
 use App\Http\Controllers\Admin\ArtikelController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\KategoriController as AdminKategoriController;
@@ -49,7 +49,7 @@ Route::match(['get', 'post'], '/kalkulator', [HomeController2::class, 'kalkulato
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
 
-    Route::resource('menu', AdminMenuController::class);
+    Route::resource('menu', AdminMenuController2::class);
     Route::resource('artikel', ArtikelController::class);
     Route::resource('users', AdminUserController::class);
     Route::resource('kategori', AdminKategoriController::class);
