@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Menu;
+use App\Models\Menu2;
 use Illuminate\Http\Request;
 
-class MenuController extends Controller
+class MenuController2 extends Controller
 {
 
     public function showUser()
     {
         $title = "Menu";
-        $menus = Menu::latest()->get();
+        $menus = Menu2::latest()->get();
         return view('pages.menu', compact('menus', 'title'));
     }
 
@@ -19,7 +19,7 @@ class MenuController extends Controller
     public function showDetail($id)
     {
         $title = "Detail Menu";
-        $menu = Menu::findOrFail($id);
+        $menu = Menu2::findOrFail($id);
 
         $menu->increment('dibaca');
         return view('pages.menu-detail', compact('menu', 'title'));

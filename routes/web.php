@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController2;
-use App\Http\Controllers\MenuController;
+use App\Http\Controllers\MenuController2;
 use App\Http\Controllers\ArtikelController2;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthCustomController;
@@ -38,8 +38,8 @@ Route::prefix('test')->group(function () {
     //     return view('pages.profile');
     // })->name('test.profile');
 });
-Route::get('/menu', [MenuController::class, 'showUser'])->name('menu');
-Route::get('/menu/{id}', [MenuController::class, 'showDetail'])->name('menu.show');
+Route::get('/menu', [MenuController2::class, 'showUser'])->name('menu');
+Route::get('/menu/{id}', [MenuController2::class, 'showDetail'])->name('menu.show');
 Route::get('/artikel', [ArtikelController2::class, 'index'])->name('artikel.index');
 Route::get('/artikel/{slug}', [ArtikelController2::class, 'show'])->name('artikel.show');
 Route::match(['get', 'post'], '/kalkulator', [HomeController2::class, 'kalkulator'])->name('kalkulator');
