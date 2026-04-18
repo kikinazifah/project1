@@ -79,10 +79,11 @@ jobs:
         with:
           context: .
           push: true
+          no-cache: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          # cache-from: type=gha
+          # cache-to: type=gha,mode=max
 
   # ─── JOB 3: DEPLOY KE VPS ────────────────────────────────
   deploy:
