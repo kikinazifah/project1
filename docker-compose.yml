@@ -6,7 +6,7 @@ services:
     build: .
     container_name: kelompok5_app
     ports:
-      - "8088:80"
+      - "8090:80"
     environment:
       - APP_ENV=local
       - APP_KEY=${APP_KEY}
