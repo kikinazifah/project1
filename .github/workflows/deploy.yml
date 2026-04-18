@@ -54,6 +54,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # 🔥 INI YANG FIX ERROR KAMU
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Login ke GHCR
         uses: docker/login-action@v3
         with:
@@ -108,14 +112,14 @@ jobs:
             # Pull image terbaru
             docker pull ghcr.io/${{ github.repository }}:latest
 
-            # Update container tanpa downtime besar
+            # Update container
             docker compose up -d --remove-orphans
 
             # Tunggu container siap
             echo "⏳ Menunggu container ready..."
             sleep 10
 
-            # Jalankan migrasi database
+            # Migrasi database
             docker compose exec -T app php artisan migrate --force --no-interaction
 
             echo "✅ Deployment selesai!"
